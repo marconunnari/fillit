@@ -6,13 +6,13 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:57:56 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/12 16:03:44 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/12 20:25:20 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		ft_check_fd(char *argv)
+static char		*ft_check_fd(char *argv)
 {
 	char	buff[BUFF_SIZE + 1];
 	int		open_fd;
@@ -33,16 +33,33 @@ static void		ft_check_fd(char *argv)
 	return (ft_strdup(buff));
 }
 
+void			print_tetriminos(char **tetriminos)
+{
+	int			i;
+
+	i = 0;
+	while (tetriminos[i])
+	{
+		ft_putendl(tetriminos[i]);
+		i++;
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	char	*filestr;
+	char	**tetriminos;
 
 	if (argc != 2)
 		ft_error("usage : fillit sample.fillit\n");
 	if (argc == 2)
 	{
-		ft_check_fd(argv[1]);
-		ft_putstr(filestr);
+		filestr = ft_check_fd(argv[1]);
+		tetriminos = parse_tetriminos(filestr);
+		print_tetriminos(tetriminos);
+		check_tetriminos(tetriminos);
+//		giveletters(tetriminos);
+		solvefillit(tetriminos);
 	}
 	return (0);
 }
