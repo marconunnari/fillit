@@ -6,7 +6,7 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 14:25:12 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/12 15:50:49 by qbuxman          ###   ########.fr       */
+/*   Updated: 2017/05/12 15:56:18 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	ft_check_char(char *buff)
 	while (buff[i])
 	{
 		if (buff[i] != '.' && buff[i] != '#' && buff[i] != '\n')
-		{
-			ft_putstr("wrong char");
-			exit(1);
-		}
+			ft_error("wrong char");
 		i++;
 	}
 }
@@ -43,10 +40,7 @@ void	ft_check_nb_char(char *buff)
 			i++;
 		}
 		if (nb_char != 4 && buff[i - 1] != '\n')
-		{
-			ft_putstr("error nb char per line");
-			exit(1);
-		}
+			ft_error("error nb char per line");
 		i++;
 	}
 }
@@ -66,10 +60,7 @@ void	ft_check_nb_line(char *buff)
 			nb_line++;
 		}
 		if (buff[i] != '\n' && buff[i])
-		{
-			ft_putstr("wrong number of line");
-			exit(1);
-		}
+			ft_error("wrong number of line");
 		i++;
 	}
 }
@@ -94,10 +85,7 @@ void	ft_check_nb_sharp(char *buff)
 			i++;
 		}
 		if (nb_sharp != 4)
-		{
-			ft_putstr("wrong number of sharp");
-			exit(1);
-		}
+			ft_error("wrong number of sharp");
 	}
 }
 
@@ -115,8 +103,5 @@ void	ft_check_nb_tetri(char *buff)
 		i++;
 	}
 	if (tetri > 104)
-	{
-		ft_putstr("too much tetriminos");
-		exit(1);
-	}
+		ft_error("too much tetriminos");
 }

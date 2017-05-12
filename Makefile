@@ -6,13 +6,13 @@
 #    By: qbuxman <qbuxman@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 10:55:37 by qbuxman           #+#    #+#              #
-#    Updated: 2017/05/09 10:58:42 by qbuxman          ###   ########.fr        #
+#    Updated: 2017/05/12 15:53:20 by mnunnari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = src/main.c
+SRC = main.c check.c print.c
 
 OBJ =
 
