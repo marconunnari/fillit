@@ -6,7 +6,7 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:57:56 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/12 20:25:20 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/13 19:28:48 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static char		*ft_check_fd(char *argv)
 		ft_error("open error\n");
 	if ((read_fd = read(open_fd, buff, BUFF_SIZE)) == -1)
 		ft_error("read error\n");
+	if (read_fd == 0)
+		ft_error("empty\n");
 	buff[read_fd] = '\0';
 	if ((close(open_fd)) == -1)
 		ft_error("close error\n");
@@ -45,6 +47,18 @@ void			print_tetriminos(char **tetriminos)
 	}
 }
 
+void			giveletters(char **tetriminos)
+{
+	int			i;
+
+	i = 0;
+	while (tetriminos[i])
+	{
+		ft_strreplace(tetriminos[i], '#', 'A' + i);
+		i++;
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	char	*filestr;
@@ -56,10 +70,10 @@ int				main(int argc, char **argv)
 	{
 		filestr = ft_check_fd(argv[1]);
 		tetriminos = parse_tetriminos(filestr);
-		print_tetriminos(tetriminos);
 		check_tetriminos(tetriminos);
-//		giveletters(tetriminos);
+		giveletters(tetriminos);
 		solvefillit(tetriminos);
+	//	print_tetriminos(tetriminos);
 	}
 	return (0);
 }

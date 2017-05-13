@@ -6,7 +6,7 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 14:26:17 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/12 16:11:11 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/13 19:27:13 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void			ft_error(const char *s)
 {
-	ft_putstr(s);
+	(void)s;
+	ft_putendl("error");
 	exit(1);
 }

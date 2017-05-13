@@ -6,15 +6,18 @@
 #    By: qbuxman <qbuxman@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 10:55:37 by qbuxman           #+#    #+#              #
-#    Updated: 2017/05/12 18:10:23 by mnunnari         ###   ########.fr        #
+#    Updated: 2017/05/13 19:48:35 by mnunnari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = main.c check.c print.c parse_tetriminos.c check_tetriminos.c
+SRC_FILES = main.c check.c print.c parse_tetriminos.c check_tetriminos.c \
+	solvefillit.c puttetr.c
 
-OBJ =
+SRCS = $(addprefix srcs/, $(SRC_FILES))
+
+INCLUDES = -Iincludes -Ilibft/includes
 
 FLAG = -Wall -Wextra -Werror
 
@@ -22,10 +25,10 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	make -C libft
-	gcc $(FLAG) $(SRC) -Ilibft/includes -Llibft -lft
+	gcc -o $@ $(FLAG) $(SRCS) $(INCLUDES) -Llibft -lft
 
 clean :
-	rm -f $(OBJ)
+	make fclean -C libft
 
 fclean : clean
 	rm -f $(NAME)
