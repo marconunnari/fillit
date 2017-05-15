@@ -6,7 +6,7 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:57:56 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/13 19:28:48 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/15 12:47:54 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char		*ft_check_fd(char *argv)
 		ft_error("read error\n");
 	if (read_fd == 0)
 		ft_error("empty\n");
+	if (buff[read_fd - 2] == '\n' && buff[read_fd - 1] == '\n')
+		ft_error("end with double new line\n");
 	buff[read_fd] = '\0';
 	if ((close(open_fd)) == -1)
 		ft_error("close error\n");

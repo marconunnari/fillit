@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 17:37:03 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/12 17:41:32 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/15 13:40:39 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ static int				is_empty(char c)
 	return (c == '.' || c == 'a');
 }
 
+static int				is_linempty(char *tetr, int i)
+{
+	if (i < 0 || i > 15)
+		return (1);
+	return (ft_strnequ(&tetr[i], "....", 4) ||
+			ft_strnequ(&tetr[i], "aaaa", 4));
+}
+
+static int				is_colempty(char *tetr, int i)
+{
+	if (i < 0 || i > 3)
+		return (1);
+	return (is_empty(tetr[i]) && is_empty(tetr[i + 5]) &&
+			is_empty(tetr[i + 10]) && is_empty(tetr[i + 15]));
+}
+
 static void			clean_tetrimino(char *tetr)
 {
 	int		i;
@@ -42,7 +58,8 @@ static void			clean_tetrimino(char *tetr)
 	i = 0;
 	while(i < 16)
 	{
-		if (ft_strnequ(&tetr[i], "....", 4))
+		if (is_linempty(tetr, i) &&
+				(is_linempty(tetr, i - 5) || is_linempty(tetr, i + 5)))
 			ft_memset(&tetr[i], 'a', 5);
 		i += 5;
 	}
@@ -50,7 +67,8 @@ static void			clean_tetrimino(char *tetr)
 	i = 0;
 	while (i < 4)
 	{
-		if (is_empty(tetr[i]) && is_empty(tetr[i + 5]) && is_empty(tetr[i + 10]) && is_empty(tetr[i + 15]))
+		if (is_colempty(tetr, i) &&
+				(is_colempty(tetr, i - 1) || is_colempty(tetr, i + 1)))
 		{
 			tetr[i] = 'a';
 			tetr[i + 5] = 'a';
