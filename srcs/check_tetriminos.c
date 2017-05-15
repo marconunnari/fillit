@@ -6,19 +6,14 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 17:44:33 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/12 18:35:25 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:00:21 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char		**create_valids()
+void			fill_valids(char **valids)
 {
-	static char		**valids;
-
-	if (valids != NULL)
-		return (valids);
-	valids = (char**)malloc((sizeof(char*)) * 20);
 	valids[0] = "##\n.#\n.#\n";
 	valids[1] = "##\n#.\n#.\n";
 	valids[2] = "..#\n###\n";
@@ -39,6 +34,16 @@ char		**create_valids()
 	valids[17] = "##.\n.##\n";
 	valids[18] = "##\n##\n";
 	valids[19] = NULL;
+}
+
+char			**create_valids(void)
+{
+	static char		**valids;
+
+	if (valids != NULL)
+		return (valids);
+	valids = (char**)malloc((sizeof(char*)) * 20);
+	fill_valids(valids);
 	return (valids);
 }
 
@@ -58,7 +63,7 @@ static void		check_tetrimino(char *tetr)
 	ft_error("not valid");
 }
 
-void		check_tetriminos(char **tetriminos)
+void			check_tetriminos(char **tetriminos)
 {
 	int			i;
 

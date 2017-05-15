@@ -6,7 +6,7 @@
 /*   By: qbuxman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:57:56 by qbuxman           #+#    #+#             */
-/*   Updated: 2017/05/15 12:47:54 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/15 13:58:04 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int				main(int argc, char **argv)
 		check_tetriminos(tetriminos);
 		giveletters(tetriminos);
 		solvefillit(tetriminos);
-	//	print_tetriminos(tetriminos);
 	}
 	return (0);
 }
